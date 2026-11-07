@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/1caae68e-011a-4cf5-883c-269f8b01c3d5
+
 # 🎧 Spotify Compatibility Web App
 
 Compare your full Spotify listening history with a friend: see your shared artists and songs, explore your top tracks over time, and play a two-player guessing game built from your listening patterns.
