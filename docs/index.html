@@ -7,45 +7,97 @@
     <script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script> <!-- add pyodide -->
 </head>
 <body>
-    <div class="layout">
+    <!-- ==================== UPLOAD SCREEN (shows first) ==================== -->
+    <div id="upload-screen" class="upload-screen">
+        <h1 class="welcome-title">Spotify Compatibility Analyzer</h1>
+        <p class="welcome-subtitle">Compare your full listening history with a friend!</p>
+
+        <section id="upload" class="card">
+            <h3>Upload your Spotify data</h3>
+
+            <div class="upload-people">
+                <div class="upload-person">
+                    <label>Person 1</label>
+                    <input type="text" id="nameA" placeholder="Name">
+                    <label class="file-btn">Choose zip<input type="file" id="zipA" accept=".zip" hidden></label>
+                    <span class="file-name" id="fileNameA">No file chosen</span>
+                </div>
+
+                <div class="upload-person">
+                    <label>Person 2</label>
+                    <input type="text" id="nameB" placeholder="Name">
+                    <label class="file-btn">Choose zip<input type="file" id="zipB" accept=".zip" hidden></label>
+                    <span class="file-name" id="fileNameB">No file chosen</span>
+                </div>
+            </div>
+
+            <button id="loadBtn" class="primary-btn">Compare</button>
+            <p id="status"></p>
+        </section>
+
+        <div class="welcome-notes">
+            <p>Everything runs in your browser. Your data is never uploaded anywhere.</p>
+            <p>Don't have your data yet? Request your <strong>Extended streaming history</strong> from Spotify's privacy settings. It may take a few days to arrive.</p>
+            <p>Want to compare different files later? Just refresh the page.</p>
+        </div>
+    </div>
+    <!-- ==================== END OF UPLOAD SCREEN ==================== -->
+
+    <div class="layout hidden" id="app">
         <nav>
-            <h1>Spotify Compability Shit</h1>
-            <p>Please have fun with my bullshit HAHAHAHAHA</p>
+            <h1 class="nav-title">Spotify Compatibility Analyzer</h1>
+            <p class="nav-subtitle" id="comparingNames"></p>
 
-            <section id="upload" class="card">
-                <div>
-                    <input type="text" id="nameA" placeholder="First persons name">
-                    <input type="file" id="zipA" accept=".zip">
-                </div>
-                <div>
-                    <input type="text" id="nameB" placeholder="Second persons name">
-                    <input type="file" id="zipB" accept=".zip">
-                </div>
-                <button id="loadBtn">Compare</button>
-                <p id="status"></p>
-            </section>
+            <button class="active" onclick="showTab('overview', this)">
+                Overview
+                <small>Your compatibility at a glance</small>
+            </button>
+            <button onclick="showTab('artists', this)">
+                Top Artists
+                <small>Who you each listen to most</small>
+            </button>
+            <button onclick="showTab('songs', this)">
+                Top Songs
+                <small>Your most-played tracks</small>
+            </button>
+            <!-- <button onclick="showTab('blendstats', this)">blend stats tab</button> -->
+            <button onclick="showTab('blendfunny', this)">
+                Music Taste Game
+                <small>Guess each other's stats</small>
+            </button>
+            <!-- <button onclick="showTab('habits', this)">habits tab</button> -->
 
-            <button class="active" onclick="showTab('overview', this)">overview</button>
-            <button onclick="showTab('artists', this)">Artists Tab</button>
-            <button onclick="showTab('songs', this)">Songs tab</button>
-            <button onclick="showTab('blendstats', this)">blend stats tab</button>
-            <button onclick="showTab('blendfunny', this)">blend funny tab</button>
-            <button onclick="showTab('habits', this)">habits tab</button>
+            <div class="nav-footer">
+                <p>Your data stays in your browser and is never uploaded anywhere.</p>
+                <p>Refresh the page to compare with different friends!</p>
+            </div>
         </nav>
         <main>
             <!-- OVERVIEW SECTION ======================================================================================================-->
-            <section id = "overview" class="tab">
-                <h2>Overview tab</h2>
-                <p>for the overview of the important stats</p>
+            <section id="overview" class="tab">
+                <h2>Overview</h2>
+                <p class="answer-detail" id="overviewDates"></p>
+                <label class="window-label">
+                    Time range:
+                    <select id="overviewWindow">
+                        <option value="all">All time</option>
+                        <option value="12m">Past year</option>
+                        <option value="6m">Past 6 months</option>
+                    </select>
+                </label>
+                <div id="overviewOutput"></div>
             </section>
             <!-- END OVERVIEW SECTION ======================================================================================================-->
 
             <!-- ARTIST SECTION ============================================================ -->
             <section id="artists" class="tab hidden">
-                <h2>Artists tab</h2>
+                <h1>Top Artists</h1>
+                <p>Your top 50 individual and shared artists</p>
 
                 <!-- search -->
                 <div class="card">
+                    <h2>Artist Search</h2>
+                    <p>Search any artist to see who listened first, how much you each love them, and your top songs by them.</p>
                     <input type="text" id="artistName" list="artistList" placeholder="Search for an artist...">
                     <datalist id="artistList"></datalist>
                     <button id="searchArtistButton">Search</button>
@@ -60,19 +112,19 @@
                         <option value="6m">Last 6 Months</option>
                     </select>
 
-                    <button class="active" onclick="showArtistView('indivArtists', this)">Individual Artist Rankings</button>
-                    <button onclick="showArtistView('sharedArtists', this)">Shared Artist Rankings</button>
+                    <button class="active" onclick="showArtistView('indivArtists', this)">Top Artists Individually</button>
+                    <button onclick="showArtistView('sharedArtists', this)">Top Shared Artists</button>
 
                     <div id="indivArtists" class="artist-view">
-                        <h3>Top Artists Individually</h3>
-                        <p>Ranked by total hours on the artist</p>
+                        <h2>Top Artists Individually</h2>
+                        <p>Ranked by total hours on each artist.</p>
                         <hr>
                         <div id="artistsOutput"></div>
                     </div>
 
                     <div id="sharedArtists" class="artist-view hidden">
-                        <h3>Top Artists Both Users Share</h3>
-                        <p>Ranked by whoever listened less, so both croskis need to listen</p>
+                        <h2>Top Artists Both Users Share</h2>
+                        <p>Artists you both love, ranked by total hours.</p>
                         <hr>
                         <div id="sharedArtistsOutput"></div>
                     </div>
@@ -82,7 +134,9 @@
 
             <!-- SONGS SECTION ======================================================================================================-->
             <section id = "songs" class="tab hidden">
-                <h2>Songs tab</h2>
+                <h1>Top Songs</h1>
+                <p>Your top 100 individual and shared songs</p>
+
                 <div class="card">
                     <select id="songsWindow">
                         <option value="all">All Time</option>
@@ -95,14 +149,15 @@
 
                     <!-- div to group up the shit the indivSongs tab-->
                     <div id="indivSongs" class="song-view"> <!-- has class song-view in js-->
-                        <h3>Top Individual Song Rankings by Plays</h3>
+                        <h3>Top Songs Individually</h3>
+                        <p>Ranked by total plays on each song.</p>
                         <hr>
                         <div id="songsOutput"></div> <!-- output the songs table-->
                     </div>
 
                     <div id="sharedSongs" class="song-view hidden"> <!-- has class song-view, and hidden in js -->
-                        <h3>Top Shared Song Rankings by Plays</h3>
-                        <p>Ranked by your top plays for songs, um idk</p>
+                        <h3>Top Songs Both Users Share</h3>
+                        <p>Songs you both love, ranked by plays.</p>
                         <hr>
                         <div id="sharedSongsOutput"></div>
                     </div>
@@ -119,8 +174,17 @@
 
             <!-- BLEND FUNNY SECTION ======================================================================================================-->
             <section id = "blendfunny" class="tab hidden">
-                <h2>Blend funny tab</h2>
-                <p>yea for funny</p>
+                <h2>Music Taste Game</h2>
+                <p>How well do you know each other's music? Each question is about your real listening history.</p>
+                <p class="answer-detail"> Play the game with your full listening history, or switch to <strong>Past year</strong> to play using data from the past year!</p>
+
+                <label class="window-label">
+                    Play with:
+                    <select id="gameWindow">
+                        <option value="all">All time</option>
+                        <option value="12m">Past year</option>
+                    </select>
+                </label>
 
                 <div id="gameOutput"></div>
 

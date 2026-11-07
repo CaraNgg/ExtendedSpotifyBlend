@@ -545,38 +545,52 @@ def top_shared_song_one_day(both_clean, person_a, person_b):
 #What hour you guys are most likely to be listening at the same time, and what is each persons top song (find the top shared hour, and then top song for that hour) (SHARED)
 #What hour you guys are most likely to be listening at the same time,
 #and what is each persons top song (SHARED)
-def top_shared_hour_top_song(both_clean, person_a, person_b):
+def top_shared_hour_top_song(both_clean, person_a, person_b, n=3):
     real_plays = both_clean[both_clean["counted"]].copy()
-    real_plays["hour"] = real_plays["ts"].dt.hour   # 0 = 12am, 23 = 11pm
+    real_plays["hour"] = real_plays["ts"].dt.hour
 
-    # listening time per hour, one column per person
+    # each person's share of their listening in each hour
     hours = (
         real_plays.groupby(["hour", "person"])["ms_played"].sum()
         .unstack("person", fill_value=0)
         .reindex(columns=[person_a, person_b], fill_value=0)
     )
-
-    # each person's share of their own listening in each hour
     shares = hours / hours.sum()
-
-    # the hour where both shares are highest
     best_hour = shares.min(axis=1).idxmax()
 
-    # each person's top song in that hour
     in_hour = real_plays[real_plays["hour"] == best_hour]
-    result = {"hour": int(best_hour)}
+    result = {
+        "hour": int(best_hour),
+        "shares": {person_a: round(float(shares.loc[best_hour, person_a]), 3),
+                   person_b: round(float(shares.loc[best_hour, person_b]), 3)},
+    }
 
+    # each person's top n songs in that hour
     for person in [person_a, person_b]:
-        p = in_hour[in_hour["person"] == person]
-        counts = p.groupby(["track", "artist"]).size()
-        track, artist = counts.idxmax()
+        top = (
+            in_hour[in_hour["person"] == person]
+            .groupby(["track", "artist"]).size()
+            .sort_values(ascending=False)
+            .head(n)
+        )
+        result[person] = [
+            {"track": t, "artist": a, "plays": int(c)} for (t, a), c in top.items()
+        ]
 
-        result[person] = {
-            "track": track,
-            "artist": artist,
-            "plays": int(counts.max()),
-            "share": round(float(shares.loc[best_hour, person]), 3),   # e.g. 0.09 = 9%
-        }
+    # your top n shared songs in that hour
+    counts = (
+        in_hour.groupby(["track", "artist", "person"]).size()
+        .unstack("person", fill_value=0)
+        .reindex(columns=[person_a, person_b], fill_value=0)
+    )
+    shared = counts[(counts[person_a] > 0) & (counts[person_b] > 0)].copy()
+    shared["score"] = shared[[person_a, person_b]].min(axis=1)
+    top_shared = shared.sort_values("score", ascending=False).head(n)
+
+    result["shared"] = [
+        {"track": t, "artist": a, person_a: int(row[person_a]), person_b: int(row[person_b])}
+        for (t, a), row in top_shared.iterrows()
+    ]
 
     return result
 

@@ -29,6 +29,7 @@ function showArtistView(viewId, button) {
 //adding the pyodide shit?
 let pyodide;
 let nameA, nameB;
+let gameCache = {};
 
 async function setup(){
     const status = document.getElementById("status");
@@ -76,20 +77,24 @@ async function compare() {
     main.load_both(nameA, nameB); //runs the python function, which returns JSON text
 
     //====================================================================================================
-    //update through window
+    //songs, artists, and the artist search suggestions
     updateSongs();
-
     updateArtists();
-
     fillArtistList();
 
-    //for blend funny
-    const game = JSON.parse(main.get_game(nameA, nameB));
-    showGame(game);
+    // music taste game
+    gameCache = {};
+    updateGame();
+
+    // overview
+    updateOverview();
+
+    // swap screens: hide the upload screen, show the web app
+    document.getElementById("upload-screen").classList.add("hidden");
+    document.getElementById("app").classList.remove("hidden");
 
     //====================================================================================================
 
-    status.textContent = "Done!";
 }
 
 //for the window feature, to update the song shit every time a window is changed in the SONGS TAB
@@ -301,6 +306,97 @@ function showGame(questions) {
     document.getElementById("gameOutput").innerHTML = html;
 }
 
+//builds the overview dashboard
+function showOverview(o) {
+    //for the dates at the top
+    document.getElementById("overviewDates").textContent =
+    `From ${o.date_range.start} to ${o.date_range.end}`;
+
+    let html = "";
+
+    // 1. shared stat at the top
+    html += `<div class="card overview-hero">
+        <p class="hero-score">${Math.round(o.taste_match.score * 100)}%</p>
+        <p class="hero-label">${o.taste_match.label}</p>
+        <p class="answer-detail">Driven by ${o.taste_match.driven_by.join(", ")}</p>
+        <p class="answer-detail">${o.shared_artist_count} artists in common</p>
+    </div>`;
+
+    // 2. each person's stats, side by side
+    html += '<div class="side-by-side">';
+    for (const name of [nameA, nameB]) {
+        const p = o.people[name];
+        html += `<div class="card">
+            <h3>${name}</h3>
+            <div class="stat-grid">
+                <div class="stat-wide"><p class="answer-main">${p.total_hours.toLocaleString()}</p><p class="answer-detail">hours listened</p></div>
+                <div><p class="answer-main">${p.avg_hours_per_day}</p><p class="answer-detail">hrs a day on avg</p></div>
+                <div><p class="answer-main">${p.plays.toLocaleString()}</p><p class="answer-detail">Plays</p></div>
+                <div><p class="answer-main">${p.artists.toLocaleString()}</p><p class="answer-detail">Artists</p></div>
+                <div><p class="answer-main">${p.songs.toLocaleString()}</p><p class="answer-detail">Songs</p></div>
+            </div>
+        </div>`;
+    }
+    html += "</div>";
+
+    // 3 and 4. top artists and top songs: each person + shared
+    const sections = [
+        { title: "Top artists", subtitle: "Ranked by hours listened", data: o.top_artists, unit: "hrs" },
+        { title: "Top songs", subtitle: "Ranked by number of plays", data: o.top_songs, unit: "plays" },
+    ];
+
+    for (const section of sections) {
+        html += `<h3>${section.title}</h3>`;
+        html += `<p class="answer-detail">${section.subtitle}</p>`;
+        html += '<div class="side-by-side">';
+
+        for (const [key, label] of [[nameA, nameA], [nameB, nameB], ["shared", "Both of you"]]) {
+            const items = section.data[key];
+            let list = items.length
+                ? items.map((x, i) => `${i + 1}. ${x.name} <span class="answer-detail">(${x.value} ${section.unit})</span>`).join("<br>")
+                : "Nothing shared yet!";
+            html += `<div class="card">
+                <p class="answer-detail">${label}</p>
+                <p>${list}</p>
+            </div>`;
+        }
+        html += "</div>";
+    }
+
+    // teaser for the game
+    html += `<div class="overview-teaser">
+        <p>Who knows the other's music taste better?</p>
+        <button onclick="document.querySelector('nav button[onclick*=blendfunny]').click()">Play the game →</button>
+    </div>`;
+
+    document.getElementById("overviewOutput").innerHTML = html;
+}
+
+//for the game to update if window is switched
+async function updateGame() {
+    const timeWindow = document.getElementById("gameWindow").value;
+
+    // only calculate if we haven't already
+    if (!gameCache[timeWindow]) {
+        const output = document.getElementById("gameOutput");
+        output.innerHTML = "<p>Updating the game...</p>";
+        await new Promise(r => setTimeout(r, 0));
+
+        const main = pyodide.pyimport("main");
+        gameCache[timeWindow] = JSON.parse(main.get_game(nameA, nameB, timeWindow));
+    }
+
+    showGame(gameCache[timeWindow]);
+}
+
+//for the overview time window
+function updateOverview() {
+    const timeWindow = document.getElementById("overviewWindow").value;
+    const main = pyodide.pyimport("main");
+    const overview = JSON.parse(main.get_overview(nameA, nameB, timeWindow));
+    showOverview(overview);
+}
+
 document.getElementById("loadBtn").addEventListener("click", compare);
 
 //whenever someone picks another window option, refresh the song tables
@@ -319,6 +415,24 @@ document.getElementById("searchArtistButton").addEventListener("click", searchAr
 //runs search when enter button is clicked
 document.getElementById("artistName").addEventListener("keydown", (event) => {
     if (event.key === "Enter") searchArtist();
+});
+
+//whemeber the game winddow is changed
+document.getElementById("gameWindow").addEventListener("change", () => {
+    if (nameA) updateGame();
+});
+
+//show the chosen file's name next to each upload button
+document.getElementById("zipA").addEventListener("change", (e) => {
+    document.getElementById("fileNameA").textContent = e.target.files[0]?.name || "No file chosen";
+});
+document.getElementById("zipB").addEventListener("change", (e) => {
+    document.getElementById("fileNameB").textContent = e.target.files[0]?.name || "No file chosen";
+});
+
+//runs when the window changes for the overview
+document.getElementById("overviewWindow").addEventListener("change", () => {
+    if (nameA) updateOverview();
 });
 
 setup(); //run setup as soon as page opens, so python is ready as soon as they click compare
