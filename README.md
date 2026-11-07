@@ -1,7 +1,3 @@
-
-
-https://github.com/user-attachments/assets/1caae68e-011a-4cf5-883c-269f8b01c3d5
-
 # 🎧 Spotify Compatibility Web App
 
 Compare your full Spotify listening history with a friend: see your shared artists and songs, explore your top tracks over time, and play a two-player guessing game built from your listening patterns.
@@ -9,11 +5,9 @@ Compare your full Spotify listening history with a friend: see your shared artis
 **[🔗 Try the live app](https://carangg.github.io/spotify-blend-analyzer/)**
 
 
-**[🎬 Watch the demo video]([https://youtu.be/YOUR_VIDEO_ID])**
+** Watch the demo video
 
-(https://github.com/user-attachments/assets/d58095b7-b089-4a4c-8019-90909de10910)
-
-
+https://github.com/user-attachments/assets/1caae68e-011a-4cf5-883c-269f8b01c3d5
 
 ![Demo of the app](screenshots/demo.gif)
 
