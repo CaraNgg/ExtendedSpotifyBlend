@@ -12,9 +12,22 @@ https://github.com/user-attachments/assets/1caae68e-011a-4cf5-883c-269f8b01c3d5
 ![Demo of the app](screenshots/demo.gif)
 
 ## 📸 Screenshots
-| Overview | Top Artists | Music Taste Game |
-|---|---|---|
-| ![](screenshots/overview.png) | ![](screenshots/artists.png) | ![](screenshots/game.png) |
+
+
+**Overview:** your compatibility score, listening stats, and top artists and songs at a glance
+![Overview tab](screenshots/overview.png)
+
+| 📤 Upload | 🎤 Artist search |
+|---|---|
+| ![Upload screen](<img width="1512" height="982" alt="Screenshot 2026-11-07 at 03 44 43" src="https://github.com/user-attachments/assets/175add30-d8c5-4ae8-9f1a-b318200f9077" />) | ![Artist search](<img width="1512" height="982" alt="Screenshot 2026-11-07 at 03 45 13" src="https://github.com/user-attachments/assets/86de5bc0-4117-4e0f-b571-74c06eea078b" />
+) |
+| Upload both people's Spotify data. It stays in your browser | Search any artist to see who listened first and your top songs by them |
+
+| 🎵 Top songs | 🎮 Music Taste Game |
+|---|---|
+| ![Top songs](screenshots/songs.png) | ![Game](screenshots/game.png) |
+| Your most-played songs, side by side and shared | Guess each other's stats, then click to reveal |
+
 
 ## Features
 - **Artists & Songs:** rankings for each person and shared, with All time / 12 month / 6 month views
