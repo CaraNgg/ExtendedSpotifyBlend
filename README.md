@@ -36,11 +36,5 @@ Everything runs **entirely in your browser**. Your Spotify data is never uploade
 ## 🛠️ Tech stack
 Python · Pandas · JavaScript · HTML/CSS · Pyodide · GitHub Pages
 
-## 💻 Run locally
-\```
-python -m http.server 8001 --directory docs
-\```
-Then open `http://localhost:8001`.
-
 ---
 *Not affiliated with or endorsed by Spotify.*
