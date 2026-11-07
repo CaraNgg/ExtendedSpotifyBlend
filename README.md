@@ -2,10 +2,14 @@
 
 Compare your full Spotify listening history with a friend: see your shared artists and songs, explore your top tracks over time, and play a two-player guessing game built from your listening patterns.
 
-** Live site: (https://carangg.github.io/spotify-blend-analyzer/)**
+**[🔗 Try the live app](https://carangg.github.io/spotify-blend-analyzer/)** · **[🎬 Watch the demo video](https://youtu.be/YOUR_VIDEO_ID)**
 
-![Screenshot of the app](screenshots/demo.gif)
+![Demo of the app](screenshots/demo.gif)
 
+## 📸 Screenshots
+| Overview | Top Artists | Music Taste Game |
+|---|---|---|
+| ![](screenshots/overview.png) | ![](screenshots/artists.png) | ![](screenshots/game.png) |
 ## Features
 - **Artists & Songs:** rankings for each person and shared, with All time / 12 month / 6 month views
 - **Artist search:** autocomplete search with first-listen dates, rankings, and listening timelines
