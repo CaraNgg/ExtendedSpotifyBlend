@@ -1,35 +1,29 @@
 # 🎧 Spotify Compatibility Web App
 
-Compare your full Spotify listening history with a friend: see your shared artists and songs, explore your top tracks over time, and play a two-player guessing game built from your listening patterns.
+Compare your full Spotify listening history with a friend: see your shared artists and songs, explore your top tracks over time, and play a two-player guessing game built from your listening patterns. Unlike Spotify's built-in tools, it uses your **entire** listening history. Everything runs **entirely in your browser**. Your Spotify data is never uploaded to any server.
 
-##[🔗 Try the live app](https://carangg.github.io/spotify-blend-analyzer/)
+## [🔗 Try it live!](https://carangg.github.io/spotify-blend-analyzer/)
 
-
-## Watch the demo video
+## Demo
 https://github.com/user-attachments/assets/1caae68e-011a-4cf5-883c-269f8b01c3d5
 
-![Demo of the app](screenshots/demo.gif)
-
 ## Images
-| Upload Screen | Overview |
+| **Upload** | **Overview** |
 |:---:|:---:|
 | <img src="https://github.com/user-attachments/assets/9f6860f4-ad68-4a35-a5c7-5dcb5d37b3fa" width="400" alt="Upload page"> | <img src="https://github.com/user-attachments/assets/71b25472-abfe-4c50-8e48-fff21b33ec7b" width="400" alt="Overview"> |
-| Prompt to upload both users data. | Overview of both user's compatibility with general stats. |
-| Top Artists | Top songs |
+| Upload both users' Spotify data | Your compatibility score and listening stats at a glance |
+| **Top Artists** | **Top Songs** |
 | <img src="https://github.com/user-attachments/assets/3f04ea58-430d-48d0-b73c-3f246d19b473" width="400" alt="Artist search"> | <img src="https://github.com/user-attachments/assets/7973b4d5-0f7d-44f5-93a1-a16754906d76" width="400" alt="Top songs"> |
-| See stats for any specified artist, and view the top artists individually and shared by both users. | View the top songs individually and shared by both users. |
-| Music Taste Game | |
+| Search any artist, and see each person's top artists and shared ones | Each person's top songs, plus the ones you both love |
+| **Music Taste Game** | |
 | <img src="https://github.com/user-attachments/assets/36947f55-da22-4f72-a206-fae73a12b223" width="400" alt="Music Taste Game"> | |
-| Game of ten questions to allow both user's to guess one another's music tastes. | |
+| 10 questions to guess each other's music taste | |
 
 ## Features
-- **Artists & Songs:** rankings for each person and shared, with All time / 12 month / 6 month views
-- **Artist search:** autocomplete search with first-listen dates, rankings, and listening timelines
-- **The Game:** 10 click-to-reveal questions, like each person's late-night songs, your shared listening hour, and the artist that took over a whole month
-- **Steal lists:** songs your friend loves that you've barely heard
-
-## Privacy
-Everything runs **entirely in your browser**. Your Spotify data is never uploaded to any server.
+- **Overview:** a taste match score showing how similar your music taste is, plus each person's listening stats and top artists and songs
+- **Top Artists & Songs:** rankings for each person and shared, filterable by time range
+- **Artist search:** autocomplete search with first-listen dates, rankings, and each person's top songs by that artist
+- **Music Taste Game:** 10 click-to-reveal questions, like each person's late-night songs, your shared listening hour, and the artist that took over a whole month
 
 ## How it works
 1. You upload two Spotify Extended Streaming History exports (.zip)
@@ -49,7 +43,7 @@ Everything runs **entirely in your browser**. Your Spotify data is never uploade
 2. Request your **Extended streaming history** (not just "Account data")
 3. Spotify emails it to you, which can take up to 30 days
 
-## Tech Used
+## Tech stack
 Python · Pandas · JavaScript · HTML/CSS · Pyodide · GitHub Pages
 
 ---
