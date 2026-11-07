@@ -1,8 +1,12 @@
 # 🎧 Spotify Compatibility Web App
 
-Compare your full Spotify listening history with a friend: see your shared artists and songs, explore your top tracks over time, and play a two-player guessing game built from your listening patterns. Unlike Spotify's built-in tools, it uses your **entire** listening history. Everything runs **entirely in your browser**. Your Spotify data is never uploaded to any server.
+Compare your full Spotify listening history with a friend: see your shared artists and songs, explore your top tracks over time, and play a two-player guessing game built from your listening patterns.
 
-## [🔗 Try it live!](https://carangg.github.io/spotify-blend-analyzer/)
+Unlike Spotify Blend, which only gives you a match score based on recent listening, this uses your **entire** history to show *why* your tastes match, where they differ, and how well you really know each other's music.
+
+Everything runs in your browser. Your Spotify data is never uploaded anywhere.
+
+[![Try it live](https://img.shields.io/badge/🔗_Try_it_live-1DB954?style=for-the-badge)](https://carangg.github.io/spotify-blend-analyzer/)
 
 ## Demo
 https://github.com/user-attachments/assets/1caae68e-011a-4cf5-883c-269f8b01c3d5
