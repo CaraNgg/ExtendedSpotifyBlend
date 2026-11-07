@@ -6,8 +6,8 @@ Unlike Spotify Blend, which only gives you a match score based on recent listeni
 
 Everything runs in your browser. Your Spotify data is never uploaded anywhere.
 
-## 💡 Why I built this
-My friends and I love comparing our music, but Spotify Blend only gives you a single match score based on recent listening. I wanted to see the full picture: who got into an artist first, what we each play late at night, and how well we actually know each other's taste. So I built the tool I wished existed.
+## Why I built this
+My friends and I love comparing our music and discovering new music, but Spotify Blend only gives you a single match score based on recent listening. I wanted to see the full picture: who got into an artist first, what we each play late at night, and how well we actually know each other's taste. So I built the tool I wished existed.
 
 ## 🔗 [Try it live!](https://carangg.github.io/spotify-blend-analyzer/)
 
