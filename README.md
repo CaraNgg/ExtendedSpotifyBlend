@@ -5,8 +5,7 @@ Compare your full Spotify listening history with a friend: see your shared artis
 **[🔗 Try the live app](https://carangg.github.io/spotify-blend-analyzer/)**
 
 
-**[🎬 Watch the demo video](https://youtu.be/YOUR_VIDEO_ID)**
-https://github.com/user-attachments/assets/d58095b7-b089-4a4c-8019-90909de10910
+**[🎬 Watch the demo video]([https://youtu.be/YOUR_VIDEO_ID](https://github.com/user-attachments/assets/d58095b7-b089-4a4c-8019-90909de10910))**
 
 ![Demo of the app](screenshots/demo.gif)
 
