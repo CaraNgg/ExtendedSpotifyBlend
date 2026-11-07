@@ -2,32 +2,25 @@
 
 Compare your full Spotify listening history with a friend: see your shared artists and songs, explore your top tracks over time, and play a two-player guessing game built from your listening patterns.
 
-**[🔗 Try the live app](https://carangg.github.io/spotify-blend-analyzer/)**
+##[🔗 Try the live app](https://carangg.github.io/spotify-blend-analyzer/)
 
 
-** Watch the demo video
-
+## Watch the demo video
 https://github.com/user-attachments/assets/1caae68e-011a-4cf5-883c-269f8b01c3d5
 
 ![Demo of the app](screenshots/demo.gif)
 
-## 📸 Screenshots
-
-
-**Overview:** your compatibility score, listening stats, and top artists and songs at a glance
-![Overview tab](screenshots/overview.png)
-
-| 📤 Upload | 🎤 Artist search |
-|---|---|
-| ![Upload screen](<img width="1512" height="982" alt="Screenshot 2026-11-07 at 03 44 43" src="https://github.com/user-attachments/assets/175add30-d8c5-4ae8-9f1a-b318200f9077" />) | ![Artist search](<img width="1512" height="982" alt="Screenshot 2026-11-07 at 03 45 13" src="https://github.com/user-attachments/assets/86de5bc0-4117-4e0f-b571-74c06eea078b" />
-) |
-| Upload both people's Spotify data. It stays in your browser | Search any artist to see who listened first and your top songs by them |
-
-| 🎵 Top songs | 🎮 Music Taste Game |
-|---|---|
-| ![Top songs](screenshots/songs.png) | ![Game](screenshots/game.png) |
-| Your most-played songs, side by side and shared | Guess each other's stats, then click to reveal |
-
+## Images
+| Upload Screen | Overview |
+|:---:|:---:|
+| <img src="https://github.com/user-attachments/assets/9f6860f4-ad68-4a35-a5c7-5dcb5d37b3fa" width="400" alt="Upload page"> | <img src="https://github.com/user-attachments/assets/71b25472-abfe-4c50-8e48-fff21b33ec7b" width="400" alt="Overview"> |
+| Prompt to upload both users data. | Overview of both user's compatibility with general stats. |
+| Top Artists | Top songs |
+| <img src="https://github.com/user-attachments/assets/3f04ea58-430d-48d0-b73c-3f246d19b473" width="400" alt="Artist search"> | <img src="https://github.com/user-attachments/assets/7973b4d5-0f7d-44f5-93a1-a16754906d76" width="400" alt="Top songs"> |
+| See stats for any specified artist, and view the top artists individually and shared by both users. | View the top songs individually and shared by both users. |
+| Music Taste Game | |
+| <img src="https://github.com/user-attachments/assets/36947f55-da22-4f72-a206-fae73a12b223" width="400" alt="Music Taste Game"> | |
+| Game of ten questions to allow both user's to guess one another's music tastes. | |
 
 ## Features
 - **Artists & Songs:** rankings for each person and shared, with All time / 12 month / 6 month views
