@@ -11,7 +11,7 @@ Everything runs in your browser. Your Spotify data is never uploaded anywhere.
 ## Demo
 https://github.com/user-attachments/assets/1caae68e-011a-4cf5-883c-269f8b01c3d5
 
-## Images
+## App Images
 | **Upload** | **Overview** |
 |:---:|:---:|
 | <img src="https://github.com/user-attachments/assets/9f6860f4-ad68-4a35-a5c7-5dcb5d37b3fa" width="400" alt="Upload page"> | <img src="https://github.com/user-attachments/assets/71b25472-abfe-4c50-8e48-fff21b33ec7b" width="400" alt="Overview"> |
