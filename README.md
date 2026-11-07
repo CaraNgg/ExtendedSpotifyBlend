@@ -6,7 +6,7 @@ Unlike Spotify Blend, which only gives you a match score based on recent listeni
 
 Everything runs in your browser. Your Spotify data is never uploaded anywhere.
 
-[![Try it live](https://img.shields.io/badge/🔗_Try_it_live-1DB954?style=for-the-badge)](https://carangg.github.io/spotify-blend-analyzer/)
+## 🔗 [Try it live!](https://carangg.github.io/spotify-blend-analyzer/)
 
 ## Demo
 https://github.com/user-attachments/assets/1caae68e-011a-4cf5-883c-269f8b01c3d5
