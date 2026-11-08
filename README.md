@@ -1,5 +1,7 @@
 # Extended Spotify Blend
 
+*A full-history Spotify compatibility web app*
+
 Compare your full Spotify listening history with a friend: see your shared artists and songs, explore your top tracks over time, and play a two-player guessing game built from your listening patterns.
 
 Unlike Spotify Blend, which only gives you a match score based on recent listening, this uses your **entire** history to show *why* your tastes match, where they differ, and how well you really know each other's music.
