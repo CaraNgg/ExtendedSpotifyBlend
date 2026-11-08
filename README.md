@@ -9,7 +9,7 @@ Everything runs in your browser. Your Spotify data is never uploaded anywhere.
 ## Why I built this
 My friends and I love comparing our music and discovering new music, but Spotify Blend only gives you a single match score based on recent listening. I wanted to see the full picture: who got into an artist first, what we each play late at night, and how well we actually know each other's taste. So I decided to make what I wished existed!
 
-## [Try it live!](https://carangg.github.io/spotify-blend-analyzer/)
+## [Try it live!](https://carangg.github.io/ExtendedSpotifyBlend)
 
 ## Demo
 https://github.com/user-attachments/assets/1caae68e-011a-4cf5-883c-269f8b01c3d5
