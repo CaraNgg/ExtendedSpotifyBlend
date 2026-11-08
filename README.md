@@ -1,4 +1,4 @@
-# Spotify Compatibility Web App
+# Extended Spotify Blend
 
 Compare your full Spotify listening history with a friend: see your shared artists and songs, explore your top tracks over time, and play a two-player guessing game built from your listening patterns.
 
